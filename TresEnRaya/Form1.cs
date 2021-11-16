@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TresEnRaya.Properties;
@@ -58,8 +59,8 @@ namespace TresEnRaya
                 evaluarTurno();
             }
 
-            
-            
+
+
 
 
         }
@@ -74,7 +75,7 @@ namespace TresEnRaya
                 evaluarTurno();
             }
 
-            
+
 
         }
 
@@ -82,10 +83,9 @@ namespace TresEnRaya
         {
             turno("0.1");
             evaluarTurno();
-            if(!acabado)
+            if (!acabado)
             {
                 turno(maquina());
-
                 evaluarTurno();
             }
 
@@ -100,7 +100,6 @@ namespace TresEnRaya
             {
                 turno(maquina());
                 evaluarTurno();
-
             }
 
 
@@ -114,9 +113,7 @@ namespace TresEnRaya
             {
                 turno(maquina());
                 evaluarTurno();
-
             }
-
 
         }
 
@@ -128,7 +125,6 @@ namespace TresEnRaya
             {
                 turno(maquina());
                 evaluarTurno();
-
             }
 
 
@@ -144,7 +140,7 @@ namespace TresEnRaya
                 evaluarTurno();
             }
 
-            
+
 
         }
 
@@ -157,7 +153,6 @@ namespace TresEnRaya
             {
                 turno(maquina());
                 evaluarTurno();
-
             }
 
 
@@ -165,6 +160,7 @@ namespace TresEnRaya
 
         public void turno(String boton)
         {
+            Console.WriteLine(" TURNO : " + contTurnos);
             String turno = "";
             if (contTurnos % 2 == 0)
             {
@@ -373,6 +369,49 @@ namespace TresEnRaya
             btnUsados.Clear();
             acabado = false;
 
+
+            
+        }
+
+        private void btnWTF_Click(object sender, EventArgs e)
+        {
+            contTurnos = 1;
+
+            btn0_0.Text = "";
+            btn1_1.Text = "";
+            btn2_2.Text = "";
+            btn0_1.Text = "";
+            btn0_2.Text = "";
+            btn1_0.Text = "";
+            btn2_0.Text = "";
+            btn2_1.Text = "";
+            btn1_2.Text = "";
+            declararVictoriant();
+
+            
+
+            lblVictoria.Text = "";
+
+            x.Clear();
+            o.Clear();
+            btnUsados.Clear();
+            acabado = false;
+
+
+            while (!acabado)
+            {
+                Thread.Sleep(250);
+                turno(maquinaX());
+                evaluarTurno();
+
+                Thread.Sleep(250);
+
+                if (!acabado)
+                {
+                    turno(maquina());
+                    evaluarTurno();
+                }
+            }
         }
 
         private void evaluarTurno()
@@ -447,6 +486,8 @@ namespace TresEnRaya
 
         }
 
+
+
         private void declararVictoriant()
         {
             btn0_0.Enabled = true;
@@ -489,6 +530,21 @@ namespace TresEnRaya
             if (!btnUsados.Contains("1.1"))
             {
                 decision = "1.1";
+            } else if ((x.Contains("1.0") && x.Contains("2.1") && !btnUsados.Contains("2.0")))
+            {
+                decision = "2.0";
+            }
+            else if ((x.Contains("2.1") && x.Contains("1.2") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((x.Contains("1.2") && x.Contains("0.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((x.Contains("0.1") && x.Contains("1.0") && !btnUsados.Contains("0.0")))
+            {
+                decision = "0.0";
             }
             else if ((o.Contains("0.0") && o.Contains("1.1") && !btnUsados.Contains("2.2")))
             {
@@ -729,54 +785,618 @@ namespace TresEnRaya
             else if (x.Contains("2.0") && x.Contains("0.2") && !btnUsados.Contains("1.2"))
             {
                 decision = "1.2";
-            }else
+            } 
+            else if (x.Contains("2.2") && x.Contains("0.1") && !btnUsados.Contains("0.2")) 
             {
-
-
-               do
-                {
-                    btnSelect = rd.Next(0, 9);
-                    Console.WriteLine(" ");
-                    Console.WriteLine("id decision maquina: " + btnSelect);
-                    Console.WriteLine(" ");
-
-                    decision = btnPosibles[btnSelect];
-                    Console.WriteLine(" ");
-                    Console.WriteLine("decision maquina: " + decision);
-                    Console.WriteLine(" ");
-                    if (!btnIntentados.Contains(decision))
-                    {
-                        btnIntentados.Add(decision);
-
-                    }
-
-                    if (btnIntentados.Count() >= 9)
-                    {
-                        acabado = true;
-                        decision = "";
-
-                    }
-
-                    if (!btnUsados.Contains(decision) || btnIntentados.Count() >= 9)
-                    {
-                        repetido = false;
-                    }
-
-                    Console.WriteLine("Botones intentados:");
-
-                    for (int i = 0; i < btnIntentados.Count(); i++)
-                    {
-                        Console.Write(btnIntentados[i] + ", ");
-
-                    }
-                    Console.WriteLine(" ");
-
-                } while (repetido);
+                decision = "0.2";
+            }
+            else if (x.Contains("0.2") && x.Contains("1.0") && !btnUsados.Contains("0.0"))
+            {
+                decision = "0.0";
+            }
+            else if (x.Contains("0.0") && x.Contains("2.1") && !btnUsados.Contains("2.0"))
+            {
+                decision = "2.0";
+            }
+            else if (x.Contains("2.0") && x.Contains("1.2") && !btnUsados.Contains("2.2"))
+            {
+                decision = "2.2";
+            }
+            else if (x.Contains("0.2") && x.Contains("2.1") && !btnUsados.Contains("2.2"))
+            {
+                decision = "2.2";
+            }
+            else if (x.Contains("2.2") && x.Contains("1.0") && !btnUsados.Contains("2.0"))
+            {
+                decision = "2.0";
+            }
+            else if (x.Contains("2.0") && x.Contains("0.1") && !btnUsados.Contains("0.0"))
+            {
+                decision = "0.0";
+            }
+            else if (x.Contains("0.0") && x.Contains("1.2") && !btnUsados.Contains("0.2"))
+            {
+                decision = "0.2";
+            }
+            else
+            {
+                decision = decisionRandom();
             }
             
                           
             return decision;
             
+        }
+
+        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
+
+        private String maquinaX()
+        {
+            String decision = "";
+           
+            Random rdJugada = new Random();
+            int jugada;
+            int arista;
+            int esquina;
+            /*if (!btnUsados.Contains("1.1"))
+            {
+                decision = "1.1";
+            }*/
+
+
+
+            if (contTurnos <= 2)
+            {
+                jugada = rdJugada.Next(1, 4);
+                if (jugada == 1)
+                {
+                    Console.Write("*** JUGADA 1 ***");
+                    decision = "1.1";
+                }
+                else if (jugada == 2)
+                {
+                    Console.Write("*** JUGADA 2 ***");
+
+                    arista = rdJugada.Next(1, 5);
+
+                    if (arista == 1)
+                    {
+                        decision = "1.0";
+                    }
+                    else if (arista == 2)
+                    {
+                        decision = "2.1";
+                    }
+                    else if (arista == 3)
+                    {
+                        decision = "1.2";
+                    }
+                    else if (arista == 4)
+                    {
+                        decision = "0.2";
+                    }
+                }
+                else if (jugada == 3)
+                {
+                    Console.Write("*** JUGADA 3 ***");
+
+                    esquina = rdJugada.Next(1, 5);
+
+                    if (esquina == 1)
+                    {
+                        decision = "0.0";
+                    }
+                    else if (esquina == 2)
+                    {
+                        decision = "2.0";
+                    }
+                    else if (esquina == 3)
+                    {
+                        decision = "2.2";
+                    }
+                    else if (esquina == 4)
+                    {
+                        decision = "0.2";
+                    }
+                }
+
+
+            }
+            else if (contTurnos <= 4)
+            {
+                if (x.Contains("1.0") && !btnUsados.Contains("2.1"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "2.1";
+                }
+                else if (x.Contains("2.1") && !btnUsados.Contains("1.2"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "1.2";
+                }
+                else if (x.Contains("1.2") && !btnUsados.Contains("0.1"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "0.1";
+                }
+                else if (x.Contains("0.1") && !btnUsados.Contains("1.0"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "1.0";
+                }
+                else if (!btnUsados.Contains("1.0") && x.Contains("2.1"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "1.0";
+                }
+                else if (!btnUsados.Contains("2.1") && x.Contains("1.2"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "2.1";
+                }
+                else if (!btnUsados.Contains("1.2") && x.Contains("0.1"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "1.2";
+                }
+                else if (!btnUsados.Contains("0.1") && x.Contains("1.0"))
+                {
+                    Console.WriteLine("******* SEGUIMOS CON LA JUGADA 2 *******");
+                    decision = "0.1";
+                }
+                else
+                    decision = decisionRandom();
+
+
+            }
+
+
+            else if ((x.Contains("1.0") && x.Contains("2.1") && !btnUsados.Contains("2.0")))
+            {
+                decision = "2.0";
+            }
+            else if ((x.Contains("2.1") && x.Contains("1.2") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((x.Contains("1.2") && x.Contains("0.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((x.Contains("0.1") && x.Contains("1.0") && !btnUsados.Contains("0.0")))
+            {
+                decision = "0.0";
+            }
+
+            // DIAGONAL 1 GANAR
+
+            else if ((x.Contains("0.0") && x.Contains("1.1") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((x.Contains("0.0") && !btnUsados.Contains("1.1") && x.Contains("2.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("0.0") && x.Contains("1.1") && x.Contains("2.2")))
+            {
+                decision = "0.0";
+            }
+
+            // DIAGONAL 2 GANAR
+
+            else if ((x.Contains("2.0") && x.Contains("1.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((x.Contains("2.0") && !btnUsados.Contains("1.1") && x.Contains("0.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("2.0") && x.Contains("1.1") && x.Contains("0.2")))
+            {
+                decision = "2.0";
+            }
+
+            // VERTICAL 1 GANAR
+
+            else if ((x.Contains("0.0") && x.Contains("0.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((x.Contains("0.0") && !btnUsados.Contains("0.1") && x.Contains("0.2")))
+            {
+                decision = "0.1";
+            }
+            else if ((!btnUsados.Contains("0.0") && x.Contains("0.1") && x.Contains("0.2")))
+            {
+                decision = "0.0";
+            }
+
+            // VERITCAL 2 GANAR
+
+            else if ((x.Contains("1.0") && x.Contains("1.1") && !btnUsados.Contains("1.2")))
+            {
+                decision = "1.2";
+            }
+            else if ((x.Contains("1.0") && !btnUsados.Contains("1.1") && x.Contains("1.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("1.0") && x.Contains("1.1") && x.Contains("1.2")))
+            {
+                decision = "1.0";
+            }
+
+            // VERTICAL 3 GANAR
+            else if ((x.Contains("2.0") && x.Contains("2.1") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((x.Contains("2.0") && !btnUsados.Contains("2.1") && x.Contains("2.2")))
+            {
+                decision = "2.1";
+            }
+            else if ((!btnUsados.Contains("2.0") && x.Contains("2.1") && x.Contains("2.2")))
+            {
+                decision = "2.0";
+            }
+
+            // HORIZONTAL 1 GANAR
+            else if ((x.Contains("0.0") && x.Contains("1.0") && !btnUsados.Contains("2.0")))
+            {
+                decision = "2.0";
+            }
+            else if ((x.Contains("0.0") && !btnUsados.Contains("1.0") && x.Contains("2.0")))
+            {
+                decision = "1.0";
+            }
+            else if ((!btnUsados.Contains("0.0") && x.Contains("1.0") && x.Contains("2.0")))
+            {
+                decision = "0.0";
+            }
+
+            // HORIZONTAL 2 GANAR
+            else if ((x.Contains("0.1") && x.Contains("1.1") && !btnUsados.Contains("2.1")))
+            {
+                decision = "2.1";
+            }
+            else if ((x.Contains("0.1") && !btnUsados.Contains("1.1") && x.Contains("2.1")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("0.1") && x.Contains("1.1") && x.Contains("2.1")))
+            {
+                decision = "0.1";
+            }
+
+            // HORIZONTAL 3 GANAR
+
+            else if ((x.Contains("0.2") && x.Contains("1.2") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((x.Contains("0.2") && !btnUsados.Contains("1.2") && x.Contains("2.2")))
+            {
+                decision = "1.2";
+            }
+            else if ((!btnUsados.Contains("0.2") && x.Contains("1.2") && x.Contains("2.2")))
+            {
+                decision = "0.2";
+            }
+
+            // CONTRAATAQUE ARISTAS
+
+            else if ((o.Contains("1.0") && o.Contains("2.1") && !btnUsados.Contains("2.0")))
+            {
+                decision = "2.0";
+            }
+            else if ((o.Contains("2.1") && o.Contains("1.2") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((o.Contains("1.2") && o.Contains("0.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((o.Contains("0.1") && o.Contains("1.0") && !btnUsados.Contains("0.0")))
+            {
+                decision = "0.0";
+            }
+
+            // DIAGONAL 1 CONTRA
+
+            else if ((o.Contains("0.0") && o.Contains("1.1") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((o.Contains("0.0") && !btnUsados.Contains("1.1") && o.Contains("2.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("0.0") && o.Contains("1.1") && o.Contains("2.2")))
+            {
+                decision = "0.0";
+            }
+
+            // DIAGONAL 2 CONTRA
+
+            else if ((o.Contains("2.0") && o.Contains("1.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((o.Contains("2.0") && !btnUsados.Contains("1.1") && o.Contains("0.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("2.0") && o.Contains("1.1") && o.Contains("0.2")))
+            {
+                decision = "2.0";
+            }
+
+            // VERTICAL 1 CONTRA
+
+            else if ((o.Contains("0.0") && o.Contains("0.1") && !btnUsados.Contains("0.2")))
+            {
+                decision = "0.2";
+            }
+            else if ((o.Contains("0.0") && !btnUsados.Contains("0.1") && o.Contains("0.2")))
+            {
+                decision = "0.1";
+            }
+            else if ((!btnUsados.Contains("0.0") && o.Contains("0.1") && o.Contains("0.2")))
+            {
+                decision = "0.0";
+            }
+
+            // VERTICAL 2 CONTRA
+
+            else if ((o.Contains("1.0") && o.Contains("1.1") && !btnUsados.Contains("1.2")))
+            {
+                decision = "1.2";
+            }
+            else if ((o.Contains("1.0") && !btnUsados.Contains("1.1") && o.Contains("1.2")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("1.0") && o.Contains("1.1") && o.Contains("1.2")))
+            {
+                decision = "1.0";
+            }
+
+            // VERTICAL 3 CONTRA
+
+            else if ((o.Contains("2.0") && o.Contains("2.1") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((o.Contains("2.0") && !btnUsados.Contains("2.1") && o.Contains("2.2")))
+            {
+                decision = "2.1";
+            }
+            else if ((!btnUsados.Contains("2.0") && o.Contains("2.1") && o.Contains("2.2")))
+            {
+                decision = "2.0";
+            }
+
+            // HORIZONTAL 1 CONTRA
+
+            else if ((o.Contains("0.0") && o.Contains("1.0") && !btnUsados.Contains("2.0")))
+            {
+                decision = "2.0";
+            }
+            else if ((o.Contains("0.0") && !btnUsados.Contains("1.0") && o.Contains("2.0")))
+            {
+                decision = "1.0";
+            }
+            else if ((!btnUsados.Contains("0.0") && o.Contains("1.0") && o.Contains("2.0")))
+            {
+                decision = "0.0";
+            }
+
+            // HORIZONTAL 2 CONTRA 
+
+            else if ((o.Contains("0.1") && o.Contains("1.1") && !btnUsados.Contains("2.1")))
+            {
+                decision = "2.1";
+            }
+            else if ((o.Contains("0.1") && !btnUsados.Contains("1.1") && o.Contains("2.1")))
+            {
+                decision = "1.1";
+            }
+            else if ((!btnUsados.Contains("0.1") && o.Contains("1.1") && o.Contains("2.1")))
+            {
+                decision = "0.1";
+            }
+
+            // HORIZONTAL 3 CONTRA 
+
+            else if ((o.Contains("0.2") && o.Contains("1.2") && !btnUsados.Contains("2.2")))
+            {
+                decision = "2.2";
+            }
+            else if ((o.Contains("0.2") && !btnUsados.Contains("1.2") && o.Contains("2.2")))
+            {
+                decision = "1.2";
+            }
+            else if ((!btnUsados.Contains("0.2") && o.Contains("1.2") && o.Contains("2.2")))
+            {
+                decision = "0.2";
+            }
+
+            // CONTRA ESQUINAS CENTRO
+
+            else if (o.Contains("1.1") && !btnUsados.Contains("0.0"))
+            {
+                decision = "0.0";
+            }
+            else if (o.Contains("1.1") && !btnUsados.Contains("2.0"))
+            {
+                decision = "2.0";
+            }
+            else if (o.Contains("1.1") && !btnUsados.Contains("0.2"))
+            {
+                decision = "0.2";
+            }
+            else if (o.Contains("1.1") && !btnUsados.Contains("2.2"))
+            {
+                decision = "2.2";
+            }
+
+
+            // CONTRA ESQUINAS 1
+            else if (o.Contains("0.0") && o.Contains("2.2") && !btnUsados.Contains("1.0"))
+            {
+                decision = "1.0";
+            }
+            else if (o.Contains("0.0") && o.Contains("2.2") && !btnUsados.Contains("2.1"))
+            {
+                decision = "2.1";
+            }
+            else if (o.Contains("0.0") && o.Contains("2.2") && !btnUsados.Contains("0.1"))
+            {
+                decision = "0.1";
+            }
+            else if (o.Contains("0.0") && o.Contains("2.2") && !btnUsados.Contains("1.2"))
+            {
+                decision = "1.2";
+            }
+
+            // CONTRA ESQUINAS 2
+
+            else if (o.Contains("2.0") && o.Contains("0.2") && !btnUsados.Contains("1.0"))
+            {
+                decision = "1.0";
+            }
+            else if (o.Contains("2.0") && o.Contains("0.2") && !btnUsados.Contains("2.1"))
+            {
+                decision = "2.1";
+            }
+            else if (o.Contains("2.0") && o.Contains("0.2") && !btnUsados.Contains("0.1"))
+            {
+                decision = "0.1";
+            }
+            else if (o.Contains("2.0") && o.Contains("0.2") && !btnUsados.Contains("1.2"))
+            {
+                decision = "1.2";
+            }
+
+            // CONTRA L 1
+
+            else if (o.Contains("2.2") && o.Contains("0.1") && !btnUsados.Contains("0.2"))
+            {
+                decision = "0.2";
+            }
+            else if (o.Contains("0.2") && o.Contains("1.0") && !btnUsados.Contains("0.0"))
+            {
+                decision = "0.0";
+            }
+            else if (o.Contains("0.0") && o.Contains("2.1") && !btnUsados.Contains("2.0"))
+            {
+                decision = "2.0";
+            }
+            else if (o.Contains("2.0") && o.Contains("1.2") && !btnUsados.Contains("2.2"))
+            {
+                decision = "2.2";
+            }
+
+            // CONTRA L 2
+
+            else if (o.Contains("0.2") && o.Contains("2.1") && !btnUsados.Contains("2.2"))
+            {
+                decision = "2.2";
+            }
+            else if (o.Contains("2.2") && o.Contains("1.0") && !btnUsados.Contains("2.0"))
+            {
+                decision = "2.0";
+            }
+            else if (o.Contains("2.0") && o.Contains("0.1") && !btnUsados.Contains("0.0"))
+            {
+                decision = "0.0";
+            }
+            else if (o.Contains("0.0") && o.Contains("1.2") && !btnUsados.Contains("0.2"))
+            {
+                decision = "0.2";
+            }
+            else
+            {
+                decision = decisionRandom();
+
+            }  
+
+
+            return decision;
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           /*while (!acabado)
+            {
+                Thread.Sleep(90);
+                turno(maquinaX());
+                evaluarTurno();
+
+                Thread.Sleep(90);
+
+                if (!acabado)
+                {
+                    turno(maquina());
+                    evaluarTurno();
+                }
+            }*/
+            
+            
+        }
+
+        private String decisionRandom ()
+        {
+            int btnSelect = 0;
+            Boolean repetido = true;
+            List<String> btnIntentados = new List<string>();
+            String decision = "";
+            do
+            {
+                btnSelect = rd.Next(0, 9);
+                /* Console.WriteLine(" ");
+                 Console.WriteLine("id decision maquina: " + btnSelect);
+                 Console.WriteLine(" ");*/
+
+                decision = btnPosibles[btnSelect];
+                /*Console.WriteLine(" ");
+                Console.WriteLine("decision maquina: " + decision);
+                Console.WriteLine(" ");*/
+                if (!btnIntentados.Contains(decision))
+                {
+                    btnIntentados.Add(decision);
+
+                }
+
+                if (btnIntentados.Count() > 9)
+                {
+                    acabado = true;
+                    decision = "no ha pasado";
+
+                }
+
+                if (!btnUsados.Contains(decision) || btnIntentados.Count() >= 9)
+                {
+                    repetido = false;
+                }
+
+                /*Console.WriteLine("Botones intentados:");
+
+                 for (int i = 0; i < btnIntentados.Count(); i++)
+                 {
+                     Console.Write(btnIntentados[i] + ", ");
+
+                 }
+                 Console.WriteLine(" ");*/
+
+            } while (repetido);
+
+            return decision;
         }
     }
 }

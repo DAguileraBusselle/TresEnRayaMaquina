@@ -18,3 +18,13 @@ G:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.csproj.GenerateR
 G:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.csproj.CoreCompileInputs.cache
 G:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.exe
 G:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.pdb
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\bin\Debug\TresEnRaya.exe.config
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\bin\Debug\TresEnRaya.exe
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\bin\Debug\TresEnRaya.pdb
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.csproj.AssemblyReference.cache
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.Form1.resources
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.Properties.Resources.resources
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.csproj.GenerateResource.cache
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.csproj.CoreCompileInputs.cache
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.exe
+F:\INTERFACES\TresEnRayaMaquina\TresEnRaya\obj\Debug\TresEnRaya.pdb

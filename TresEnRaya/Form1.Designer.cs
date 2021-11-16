@@ -44,6 +44,7 @@ namespace TresEnRaya
             this.lblX = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblO = new System.Windows.Forms.Label();
+            this.btnWTF = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn0_0
@@ -149,7 +150,7 @@ namespace TresEnRaya
             // lblVictoria
             // 
             this.lblVictoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.lblVictoria.Location = new System.Drawing.Point(62, 436);
+            this.lblVictoria.Location = new System.Drawing.Point(64, 499);
             this.lblVictoria.Name = "lblVictoria";
             this.lblVictoria.Size = new System.Drawing.Size(331, 52);
             this.lblVictoria.TabIndex = 10;
@@ -195,11 +196,22 @@ namespace TresEnRaya
             this.lblO.TabIndex = 14;
             this.lblO.Text = "0";
             // 
+            // btnWTF
+            // 
+            this.btnWTF.Location = new System.Drawing.Point(162, 424);
+            this.btnWTF.Name = "btnWTF";
+            this.btnWTF.Size = new System.Drawing.Size(128, 49);
+            this.btnWTF.TabIndex = 15;
+            this.btnWTF.Text = "DIVERSION";
+            this.btnWTF.UseVisualStyleBackColor = true;
+            this.btnWTF.Click += new System.EventHandler(this.btnWTF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 518);
+            this.ClientSize = new System.Drawing.Size(456, 602);
+            this.Controls.Add(this.btnWTF);
             this.Controls.Add(this.lblO);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblX);
@@ -217,6 +229,7 @@ namespace TresEnRaya
             this.Controls.Add(this.btn0_0);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +252,7 @@ namespace TresEnRaya
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblO;
+        private System.Windows.Forms.Button btnWTF;
     }
 }
 
