@@ -29,10 +29,13 @@ namespace TresEnRaya
         private static List<String> btnPosibles = new List<string>() {"0.0", "1.0", "2.0", "0.1", "1.1", "2.1", "0.2", "1.2", "2.2" };
         private static Boolean acabado = false;
 
+        private static String estadoPartida = "";
+
         private static int puntosX = 0;
         private static int puntosO = 0;
 
         private static int contTurnos = 1;
+
 
         
 
@@ -41,8 +44,8 @@ namespace TresEnRaya
             turno("0.0");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }               
+                turno(maquina()); 
                 evaluarTurno();   
             }
                      
@@ -54,8 +57,8 @@ namespace TresEnRaya
             turno("1.0");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -70,11 +73,10 @@ namespace TresEnRaya
             turno("2.0");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
-
 
 
         }
@@ -84,8 +86,8 @@ namespace TresEnRaya
             turno("0.1");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -97,8 +99,8 @@ namespace TresEnRaya
             turno("1.1");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -110,8 +112,8 @@ namespace TresEnRaya
             turno("2.1");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -122,8 +124,8 @@ namespace TresEnRaya
             turno("0.2");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -135,8 +137,8 @@ namespace TresEnRaya
             turno("1.2");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -150,8 +152,8 @@ namespace TresEnRaya
             turno("2.2");
             evaluarTurno();
             if (!acabado)
-            {
-                turno(maquina());
+            {if (!checkFast.Checked) { Thread.Sleep(75); }
+                turno(maquina()); 
                 evaluarTurno();
             }
 
@@ -375,43 +377,117 @@ namespace TresEnRaya
 
         private void btnWTF_Click(object sender, EventArgs e)
         {
-            contTurnos = 1;
+            txtResultados.ResetText();
+            int numRegistros = 5;
 
-            btn0_0.Text = "";
-            btn1_1.Text = "";
-            btn2_2.Text = "";
-            btn0_1.Text = "";
-            btn0_2.Text = "";
-            btn1_0.Text = "";
-            btn2_0.Text = "";
-            btn2_1.Text = "";
-            btn1_2.Text = "";
-            declararVictoriant();
+            int contVicX = 0;
+            int contVicO = 0;
+            int contEmp = 0;
 
-            
-
-            lblVictoria.Text = "";
-
-            x.Clear();
-            o.Clear();
-            btnUsados.Clear();
-            acabado = false;
-
-
-            while (!acabado)
+            if (textBox1.Enabled)
             {
-                Thread.Sleep(250);
-                turno(maquinaX());
-                evaluarTurno();
-
-                Thread.Sleep(250);
-
-                if (!acabado)
-                {
-                    turno(maquina());
-                    evaluarTurno();
-                }
+                numRegistros = Int32.Parse(textBox1.Text);
             }
+
+            for (int i = 1; i <= numRegistros; i++)
+            {
+                contTurnos = 1;
+
+                btn0_0.Text = "";
+                btn1_1.Text = "";
+                btn2_2.Text = "";
+                btn0_1.Text = "";
+                btn0_2.Text = "";
+                btn1_0.Text = "";
+                btn2_0.Text = "";
+                btn2_1.Text = "";
+                btn1_2.Text = "";
+                declararVictoriant();
+
+
+
+                lblVictoria.Text = "";
+
+                x.Clear();
+                o.Clear();
+                btnUsados.Clear();
+                acabado = false;
+
+
+                while (!acabado)
+                {
+                    if (!checkFast.Checked) { Thread.Sleep(75); }
+                    turno(maquinaX());
+                    evaluarTurno();
+
+                    if (!checkFast.Checked) { Thread.Sleep(75); }
+
+                    if (!acabado)
+                    {
+                        turno(maquina());
+
+                        evaluarTurno();
+                    }
+                }
+
+                String turnoCual = "";
+
+                txtResultados.Text += ("**************************************");
+                txtResultados.Text += Environment.NewLine;
+                txtResultados.Text += ("PARTIDA " + i);
+                txtResultados.Text += Environment.NewLine;
+
+
+                for (int j = 1; j<=btnUsados.Count ; j++)
+                {
+                    if (j % 2 == 0 )
+                    {
+                        turnoCual = "O";
+                    } else
+                    {
+                        turnoCual = "X";
+                    }
+                    txtResultados.Text += ("[" + j + "]  " + "Turno " + turnoCual + ": " + "{ " + btnUsados[j-1] + " }");
+                    txtResultados.Text += Environment.NewLine;
+
+                }
+
+                txtResultados.Text += Environment.NewLine;
+
+                switch (estadoPartida)
+                {
+                    case "EMPATE":
+                        contEmp++;
+                    break;
+
+                    case "VICTORIA X":
+                        contVicX++;
+                    break;
+
+                    case "VICTORIA O":
+                        contVicO++;
+                    break;
+                }
+
+                txtResultados.Text += (estadoPartida);
+                txtResultados.Text += Environment.NewLine;
+                txtResultados.Text += Environment.NewLine;
+
+
+
+            }
+
+
+            txtResultados.Text += ("**************************************");
+            txtResultados.Text += Environment.NewLine;
+            txtResultados.Text += "VICTORIAS X: " + contVicX;
+            txtResultados.Text += Environment.NewLine;
+            txtResultados.Text += "VICTORIAS O: " + contVicO;
+            txtResultados.Text += Environment.NewLine;
+            txtResultados.Text += "EMPATES: " + contEmp;
+
+
+
         }
 
         private void evaluarTurno()
@@ -452,12 +528,10 @@ namespace TresEnRaya
 
                 declararVictoria();
                     lblVictoria.Text = victoriaX;
-                    Console.WriteLine("puntos de x" + puntosX);
+                estadoPartida = "VICTORIA X";
 
                     puntosX++;
-                    Console.WriteLine("puntos de x" + puntosX);
                 lblO.Text = puntosO.ToString();
-
                 lblX.Text = puntosX.ToString();
                 }
                 else if ((o.Contains("0.0") && o.Contains("1.1") && o.Contains("2.2")) || (o.Contains("2.0") && o.Contains("1.1") && o.Contains("0.2")) ||
@@ -468,6 +542,7 @@ namespace TresEnRaya
 
                 declararVictoria();
                     lblVictoria.Text = victoriaO;
+                estadoPartida = "VICTORIA O";
                 
                 puntosO++;
                 lblO.Text = puntosO.ToString();
@@ -478,6 +553,7 @@ namespace TresEnRaya
 
                 declararVictoria();
                     lblVictoria.Text = "EMPATE";
+                estadoPartida = "EMPATE";
                 }
              
 
@@ -1332,21 +1408,10 @@ namespace TresEnRaya
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           /*while (!acabado)
-            {
-                Thread.Sleep(90);
-                turno(maquinaX());
-                evaluarTurno();
-
-                Thread.Sleep(90);
-
-                if (!acabado)
-                {
-                    turno(maquina());
-                    evaluarTurno();
-                }
-            }*/
+            textBox1.Text = "5";
+            textBox1.Enabled = false;
             
+
             
         }
 
@@ -1398,5 +1463,29 @@ namespace TresEnRaya
 
             return decision;
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char caracter = e.KeyChar;
+            if (!Char.IsNumber(caracter) && !caracter.Equals('\b') && !caracter.Equals(' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void checkInformes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkInformes.Checked)
+            {
+                textBox1.Enabled = true;
+            } else
+            {
+                textBox1.Text = "5";
+                textBox1.Enabled = false;
+
+            }
+        }
+
+        
     }
 }

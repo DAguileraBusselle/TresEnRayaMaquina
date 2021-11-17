@@ -45,6 +45,11 @@ namespace TresEnRaya
             this.label2 = new System.Windows.Forms.Label();
             this.lblO = new System.Windows.Forms.Label();
             this.btnWTF = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkInformes = new System.Windows.Forms.CheckBox();
+            this.lblInformes = new System.Windows.Forms.Label();
+            this.txtResultados = new System.Windows.Forms.TextBox();
+            this.checkFast = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn0_0
@@ -170,7 +175,7 @@ namespace TresEnRaya
             // 
             this.lblX.AutoSize = true;
             this.lblX.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblX.Location = new System.Drawing.Point(55, 379);
+            this.lblX.Location = new System.Drawing.Point(45, 363);
             this.lblX.Name = "lblX";
             this.lblX.Size = new System.Drawing.Size(25, 25);
             this.lblX.TabIndex = 12;
@@ -180,7 +185,7 @@ namespace TresEnRaya
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(354, 338);
+            this.label2.Location = new System.Drawing.Point(12, 397);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 24);
             this.label2.TabIndex = 13;
@@ -190,7 +195,7 @@ namespace TresEnRaya
             // 
             this.lblO.AutoSize = true;
             this.lblO.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblO.Location = new System.Drawing.Point(393, 376);
+            this.lblO.Location = new System.Drawing.Point(45, 424);
             this.lblO.Name = "lblO";
             this.lblO.Size = new System.Drawing.Size(25, 25);
             this.lblO.TabIndex = 14;
@@ -206,11 +211,69 @@ namespace TresEnRaya
             this.btnWTF.UseVisualStyleBackColor = true;
             this.btnWTF.Click += new System.EventHandler(this.btnWTF_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(401, 438);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(39, 20);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // checkInformes
+            // 
+            this.checkInformes.AutoSize = true;
+            this.checkInformes.Location = new System.Drawing.Point(331, 441);
+            this.checkInformes.Name = "checkInformes";
+            this.checkInformes.Size = new System.Drawing.Size(64, 17);
+            this.checkInformes.TabIndex = 18;
+            this.checkInformes.Text = "Custom:";
+            this.checkInformes.UseVisualStyleBackColor = true;
+            this.checkInformes.CheckedChanged += new System.EventHandler(this.checkInformes_CheckedChanged);
+            // 
+            // lblInformes
+            // 
+            this.lblInformes.AutoSize = true;
+            this.lblInformes.Location = new System.Drawing.Point(306, 422);
+            this.lblInformes.Name = "lblInformes";
+            this.lblInformes.Size = new System.Drawing.Size(103, 13);
+            this.lblInformes.TabIndex = 19;
+            this.lblInformes.Text = "Número de pruebas:";
+            // 
+            // txtResultados
+            // 
+            this.txtResultados.AllowDrop = true;
+            this.txtResultados.BackColor = System.Drawing.Color.Black;
+            this.txtResultados.Cursor = System.Windows.Forms.Cursors.No;
+            this.txtResultados.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResultados.ForeColor = System.Drawing.Color.Lime;
+            this.txtResultados.Location = new System.Drawing.Point(463, 12);
+            this.txtResultados.Multiline = true;
+            this.txtResultados.Name = "txtResultados";
+            this.txtResultados.ReadOnly = true;
+            this.txtResultados.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtResultados.Size = new System.Drawing.Size(448, 578);
+            this.txtResultados.TabIndex = 20;
+            // 
+            // checkFast
+            // 
+            this.checkFast.AutoSize = true;
+            this.checkFast.Location = new System.Drawing.Point(331, 363);
+            this.checkFast.Name = "checkFast";
+            this.checkFast.Size = new System.Drawing.Size(90, 17);
+            this.checkFast.TabIndex = 21;
+            this.checkFast.Text = "Modo Rapido";
+            this.checkFast.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 602);
+            this.ClientSize = new System.Drawing.Size(925, 602);
+            this.Controls.Add(this.checkFast);
+            this.Controls.Add(this.txtResultados);
+            this.Controls.Add(this.lblInformes);
+            this.Controls.Add(this.checkInformes);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnWTF);
             this.Controls.Add(this.lblO);
             this.Controls.Add(this.label2);
@@ -253,6 +316,11 @@ namespace TresEnRaya
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblO;
         private System.Windows.Forms.Button btnWTF;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox checkInformes;
+        private System.Windows.Forms.Label lblInformes;
+        private System.Windows.Forms.TextBox txtResultados;
+        private System.Windows.Forms.CheckBox checkFast;
     }
 }
 
